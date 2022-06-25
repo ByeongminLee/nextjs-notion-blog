@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useTheme } from 'next-themes';
+import styled from '@emotion/styled';
 import { DATABASE_ID } from '../lib/notionKey';
 import { getDatabase } from '../lib/notion';
 import { useEffect, useState } from 'react';
@@ -15,7 +16,7 @@ export default function Home({ posts }) {
       <h1>nextjs notion blog</h1>
       <div>
         The current theme is: {theme}
-        <button onClick={() => (theme === 'dark' ? setTheme('light') : setTheme('dark'))}>theme toggle</button>
+        <Button onClick={() => (theme === 'dark' ? setTheme('light') : setTheme('dark'))}>theme toggle</Button>
       </div>
     </div>
   );
@@ -30,3 +31,7 @@ export const getStaticProps = async () => {
     revalidate: 1,
   };
 };
+
+const Button = styled.button`
+  color: var(--primary-color);
+`;

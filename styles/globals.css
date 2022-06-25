@@ -16,12 +16,13 @@ a {
   box-sizing: border-box;
 }
 :root {
-  /* Your default theme */
   --background: white;
   --foreground: black;
+  --primary-color: blue;
 }
 
 [data-theme='dark'] {
   --background: black;
   --foreground: white;
+  --primary-color: red;
 }
