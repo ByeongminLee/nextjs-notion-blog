@@ -1,4 +1,6 @@
+@import './theme/index.css';
 @import './notion.css';
+
 html,
 body {
   padding: 0;
@@ -14,15 +16,4 @@ a {
 
 * {
   box-sizing: border-box;
-}
-:root {
-  --background: white;
-  --foreground: black;
-  --primary-color: blue;
-}
-
-[data-theme='dark'] {
-  --background: black;
-  --foreground: white;
-  --primary-color: red;
 }
