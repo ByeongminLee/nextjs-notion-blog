@@ -1,6 +1,6 @@
-import { getBlocks, getDatabase, getPage } from '@/lib/notion';
-import { DATABASE_ID } from '@/lib/notionKey';
-import { RenderBlock } from '@/lib/RenderBlock';
+import { getBlocks, getDatabase, getPage } from '@/lib/notion/notionAPI';
+import { DATABASE_ID } from '@/lib/notion/notionKey';
+import { RenderBlock } from '@/lib/notion/RenderBlock';
 import { Fragment } from 'react';
 
 const Post = ({ page, blocks }) => {
