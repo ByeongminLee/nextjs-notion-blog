@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { useTheme } from 'next-themes';
 import styled from '@emotion/styled';
-import { DATABASE_ID } from '@/lib/notion/notionKey';
-import { getDatabase } from '@/lib/notion/notionAPI';
+import { DATABASE_ID } from '@/lib/notions/notionKey';
+import { getDatabase } from '@/lib/notions/notionAPI';
 import { useEffect, useState } from 'react';
 
 export default function Home({ posts }) {
