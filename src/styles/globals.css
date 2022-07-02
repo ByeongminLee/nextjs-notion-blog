@@ -1,4 +1,6 @@
+@import './theme/index.css';
 @import './notion.css';
+
 html,
 body {
   padding: 0;

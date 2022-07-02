@@ -1,8 +1,6 @@
 export const RenderBlock = block => {
-  //   console.log('\n\n\n\nvalue\n', block, '\n\n\n\nvalue\n');
   const { type, id } = block;
   const value = block[type];
-  console.log('\n\n', block, value, 'type', type, '\n\n\n\n\n');
 
   switch (type) {
     case 'paragraph':
