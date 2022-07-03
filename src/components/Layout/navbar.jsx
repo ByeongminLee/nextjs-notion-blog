@@ -22,6 +22,7 @@ const Container = styled.div`
   width: 100%;
   background-color: var(--color-navbar-bg);
   border-bottom: 1px solid var(--color-line);
+  box-shadow: var(--color-shadow);
 `;
 
 const Wrapper = styled.div`
