@@ -1,5 +1,22 @@
 :root {
-  --background: white;
-  --foreground: black;
-  --primary-color: blue;
+  --color-background: #fff;
+  --color-navbar-bg: #fff;
+  --color-navbar-border: #eee;
+
+  /* common */
+
+  /* common - color*/
+  --color-white: #fff;
+  --color-link: #3a95ff;
+
+  /* common - font size */
+  --fontSize-xs: 0.5rem;
+  --fontSize-sm: 0.75rem;
+  --fontSize-base: 1rem;
+  --fontSize-md: 1.25rem;
+  --fontSize-lg: 1.5rem;
+  --fontSize-xl: 1.7rem;
+  --fontSize-2xl: 2rem;
+  --fontSize-3xl: 2.5rem;
+  --fontSize-4xl: 3rem;
 }
