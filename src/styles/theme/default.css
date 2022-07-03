@@ -1,7 +1,8 @@
 :root {
-  --color-background: #fff;
+  --color-body-bg: #fff;
   --color-navbar-bg: #fff;
-  --color-navbar-border: #eee;
+  --color-toggle-bg: #555;
+  --color-line: #eee;
 
   /* common */
 

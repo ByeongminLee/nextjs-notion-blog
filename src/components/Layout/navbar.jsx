@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import ThemeToggle from '../ThemeToggle';
 
 const navbar = () => {
   return (
@@ -6,6 +7,7 @@ const navbar = () => {
       <Wrapper>
         <div>
           <h1>nextjs-notion-blog</h1>
+          <ThemeToggle></ThemeToggle>
         </div>
       </Wrapper>
     </Container>
@@ -19,7 +21,7 @@ const Container = styled.div`
   top: 0;
   width: 100%;
   background-color: var(--color-navbar-bg);
-  border-bottom: 1px solid var(--color-navbar-border);
+  border-bottom: 1px solid var(--color-line);
 `;
 
 const Wrapper = styled.div`

@@ -1,5 +1,6 @@
 [data-theme='dark'] {
-  --color-background: #202123;
+  --color-body-bg: #202123;
   --color-navbar-bg: #1e1e1e;
-  --color-navbar-border: #555;
+  --color-toggle-bg: #222;
+  --color-line: #555;
 }
