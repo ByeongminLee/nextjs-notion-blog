@@ -49,6 +49,7 @@ export default PostCard;
 
 const Card = styled.div`
   width: 100%;
+  min-width: 360px;
   word-break: break-all;
   padding: 30px 0;
   border-bottom: 0.5px solid var(--color-line-card);
@@ -89,6 +90,7 @@ const TagsContainer = styled.div`
 
 const Date = styled.span`
   width: 15%;
+  min-width: 100px;
   text-align: right;
   font-size: var(--fontSize-sm);
   color: var(--color-grey-text);
