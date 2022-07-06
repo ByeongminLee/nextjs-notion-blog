@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
 import Link from 'next/link';
 import Tags from '../Tags';
 
@@ -35,8 +36,12 @@ const PostCard = ({ data }) => {
       <TagsContainer>
         <Tags data={tagsData} />
       </TagsContainer>
+
       <Date>
-        {year}년 {month}월 {day}일
+        <Image src="/icon/calender.png" alt="calender" width={14} height={14} />
+        <span>
+          {year}년 {month}월 {day}일
+        </span>
       </Date>
     </Card>
   );
@@ -85,13 +90,18 @@ const TagsContainer = styled.div`
   margin: 0;
 `;
 
-const Date = styled.span`
+const Date = styled.div`
   width: 15%;
-  min-width: 100px;
+  min-width: 120px;
   text-align: right;
-  font-size: var(--fontSize-sm);
-  color: var(--color-grey-text);
   float: right;
+
+  span {
+    padding: 0 5px;
+    vertical-align: top;
+    font-size: var(--fontSize-sm);
+    color: var(--color-grey-text);
+  }
 
   ::after {
     clear: both;
