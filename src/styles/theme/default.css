@@ -3,7 +3,11 @@
   --color-navbar-bg: #fff;
   --color-toggle-bg: #555;
   --color-line: #eee;
+  --color-line-card: #666;
   --color-shadow: rgb(0 0 0 / 8%) 0px 0px 15px;
+
+  --color-primary-text: #000;
+  --color-grey-text: #7b7b7b;
 
   /* common */
 
@@ -16,7 +20,7 @@
   --fontSize-xs: 0.5rem;
   --fontSize-sm: 0.75rem;
   --fontSize-base: 1rem;
-  --fontSize-md: 1.25rem;
+  --fontSize-md: 1.2rem;
   --fontSize-lg: 1.5rem;
   --fontSize-xl: 1.7rem;
   --fontSize-2xl: 2rem;

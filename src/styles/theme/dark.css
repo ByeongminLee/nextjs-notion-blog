@@ -3,5 +3,9 @@
   --color-navbar-bg: #1e1e1e;
   --color-toggle-bg: #222;
   --color-line: #555;
+  --color-line-card: #eee;
   --color-shadow: rgba(90, 90, 90, 0.2) 0px 0px 15px;
+
+  --color-primary-text: #e6e6e6;
+  --color-grey-text: #a8a8a8;
 }
