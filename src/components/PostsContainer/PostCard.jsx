@@ -1,14 +1,12 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import Tags from '../Tags';
 
 const PostCard = ({ data }) => {
   const { id, created_time, properties } = data;
   const url = id.replace(/\-/g, '');
   const title = properties.Title.title[0].plain_text;
-  const tags = properties.Tags.multi_select.map(value => {
-    return value.name;
-  });
+  let tagsData = properties.Tags.multi_select;
   const description = properties.Description.rich_text.length !== 0 ? properties.Description.rich_text[0].plain_text : null;
 
   const date = properties.Date.date.start;
@@ -35,8 +33,7 @@ const PostCard = ({ data }) => {
       </Link>
 
       <TagsContainer>
-        태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그
-        영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역 테스트태그 영역
+        <Tags data={tagsData} />
       </TagsContainer>
       <Date>
         {year}년 {month}월 {day}일

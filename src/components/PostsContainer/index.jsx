@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import PostCard from './PostCard';
 
 const PostsContainer = ({ dataList }) => {
-  console.log('1123', dataList);
   return (
     <div>
       {dataList?.map((data, key) => (
