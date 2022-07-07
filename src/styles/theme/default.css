@@ -2,11 +2,13 @@
   --color-body-bg: #fff;
   --color-navbar-bg: #fff;
   --color-toggle-bg: #555;
+  --color-button-bg: #ebe9e9;
   --color-line: #eee;
   --color-line-card: #666;
   --color-shadow: rgb(0 0 0 / 8%) 0px 0px 15px;
 
   --color-primary-text: #000;
+  --color-button-text: #4b4b4b;
   --color-grey-text: #7b7b7b;
 
   /* common */
