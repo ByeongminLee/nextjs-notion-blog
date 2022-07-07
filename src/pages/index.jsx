@@ -1,24 +1,27 @@
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import styled from '@emotion/styled';
 import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { getDatabase } from '@/lib/notions/notionAPI';
-import { useEffect, useState } from 'react';
+import Tabs from '@/components/Tabs';
+import PostsContainer from '@/components/PostsContainer';
 
 export default function Home({ posts }) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [target, setTarget] = useState(0);
+  const tabTitle = ['POSTS', 'SERIES', 'TAGS'];
 
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
+  console.log(posts);
   return (
-    <div>
-      <h1>nextjs notion blog</h1>
-      <div>
-        The current theme is: {theme}
-        <Button onClick={() => (theme === 'dark' ? setTheme('light') : setTheme('dark'))}>theme toggle</Button>
-      </div>
-    </div>
+    <>
+      <Tabs tabTitle={tabTitle} target={target} setTarget={setTarget} />
+
+      {target === 0 ? <PostsContainer dataList={posts} /> : target === 1 ? <p>series</p> : <p>tags </p>}
+    </>
   );
 }
 

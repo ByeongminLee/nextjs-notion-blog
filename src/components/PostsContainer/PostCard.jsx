@@ -10,14 +10,15 @@ const PostCard = ({ data }) => {
   let tagsData = properties.Tags.multi_select;
   const description = properties.Description.rich_text.length !== 0 ? properties.Description.rich_text[0].plain_text : null;
 
-  const date = properties.Date.date.start;
+  const date = properties.Date.date !== null ? properties.Date.date.start : null;
+
   const series = properties.Series.select !== null ? properties.Series.select.name : null;
 
   const dateHandler = date => {
+    if (!date) return { year: '00', month: '00', day: '00' };
     const year = date.substring(0, 4);
     const month = parseInt(date.substring(5, 7));
     const day = parseInt(date.substring(8, 10));
-
     return { year, month, day };
   };
 

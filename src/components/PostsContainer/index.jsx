@@ -1,20 +1,32 @@
 import styled from '@emotion/styled';
+import { useState } from 'react';
 import Button from '../Button';
 import PostCard from './PostCard';
 
 const PostsContainer = ({ dataList }) => {
-  const moreHandler = () => {};
+  const [postsData] = useState(dataList);
+  const [limit, setLimit] = useState(5);
+  const [maxLimit] = useState(dataList.length);
+  const moreHandler = () => {
+    if (limit < maxLimit) setLimit(limit + 5);
+    else setLimit(dataList.length);
+  };
   return (
-    <div>
-      {dataList?.map((data, key) => (
-        <Container key={key}>
-          <PostCard data={data} />
-        </Container>
-      ))}
-      <MoreContainer>
-        <Button text={'MORE'} onClick={moreHandler} />
-      </MoreContainer>
-    </div>
+    <>
+      {postsData &&
+        postsData
+          ?.filter(item => postsData.indexOf(item) < limit)
+          .map((data, key) => (
+            <Container key={key}>
+              <PostCard data={data} />
+            </Container>
+          ))}
+      {maxLimit <= limit ? null : (
+        <MoreContainer>
+          <Button text={'MORE'} onClick={moreHandler} />
+        </MoreContainer>
+      )}
+    </>
   );
 };
 
