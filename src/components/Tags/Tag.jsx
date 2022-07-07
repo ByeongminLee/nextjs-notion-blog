@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 const Tag = ({ data }) => {
-  console.log(data);
   return (
     <Container>
       <span>#{data.name}</span>

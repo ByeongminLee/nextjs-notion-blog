@@ -17,6 +17,7 @@ const navbar = () => {
 export default navbar;
 
 const Container = styled.div`
+  z-index: 1000;
   position: fixed;
   top: 0;
   width: 100%;
