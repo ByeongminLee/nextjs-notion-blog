@@ -7,6 +7,7 @@ import { getDatabase, getTags } from '@/lib/notions/notionAPI';
 import Tabs from '@/components/Tabs';
 import PostsContainer from '@/components/PostsContainer';
 import TagsContainer from '@/components/TagsContainer';
+import SeriesContainer from '@/components/SeriesContainer';
 
 export default function Home({ posts }) {
   const [mounted, setMounted] = useState(false);
@@ -32,6 +33,22 @@ export default function Home({ posts }) {
     if (posts) getTagList(posts);
   }, [posts]);
 
+  const seriesHandler = seriesPosts => {
+    const obj = new Object();
+    seriesPosts.map(data => {
+      const seriesValue = data.properties.Series.select;
+      if (seriesValue !== null) {
+        if (!obj[`${seriesValue.name}`]) {
+          obj[`${seriesValue.name}`] = new Array();
+        }
+        obj[`${seriesValue.name}`].push(data.properties);
+      }
+    });
+    return obj;
+  };
+
+  const seriesObj = seriesHandler(posts);
+
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
@@ -39,7 +56,13 @@ export default function Home({ posts }) {
     <>
       <Tabs tabTitle={tabTitle} target={target} setTarget={setTarget} />
 
-      {target === 0 ? <PostsContainer dataList={posts} /> : target === 1 ? <p>series</p> : <TagsContainer tagsList={tagsList} />}
+      {target === 0 ? (
+        <PostsContainer dataList={posts} />
+      ) : target === 1 ? (
+        <SeriesContainer seriesObj={seriesObj} />
+      ) : (
+        <TagsContainer tagsList={tagsList} />
+      )}
     </>
   );
 }
