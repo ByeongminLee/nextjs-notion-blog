@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
-import Tag from './tag';
+import Tag from '@/components/Tags/Tag';
 
 const Tags = ({ data }) => {
   return (

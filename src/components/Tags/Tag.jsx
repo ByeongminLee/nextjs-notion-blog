@@ -1,11 +1,19 @@
 import styled from '@emotion/styled';
 
 const Tag = ({ data }) => {
-  return (
-    <Container>
-      <span>#{data.name}</span>
-    </Container>
-  );
+  if (data.name) {
+    return (
+      <Container>
+        <span>#{data.name}</span>
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <span>#{data}</span>
+      </Container>
+    );
+  }
 };
 
 export default Tag;
