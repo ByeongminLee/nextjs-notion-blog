@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import ThemeToggle from '../ThemeToggle';
 
 const navbar = () => {
@@ -6,8 +7,12 @@ const navbar = () => {
     <Container>
       <Wrapper>
         <div>
-          <h1>nextjs-notion-blog</h1>
-          <ThemeToggle></ThemeToggle>
+          <Link href="/">
+            <a>
+              <h1>nextjs-notion-blog</h1>
+            </a>
+          </Link>
+          <ThemeToggle />
         </div>
       </Wrapper>
     </Container>
