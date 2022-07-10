@@ -68,6 +68,7 @@ const SeriesCard = styled.div`
   padding: 10px;
   margin-bottom: 20px;
   word-break: break-all;
+  min-width: 360px;
 `;
 
 const SeriesInfo = styled.div`
@@ -87,6 +88,7 @@ const SeriesInfo = styled.div`
     text-align: right;
     margin-right: 20px;
     line-height: 40px;
+    min-width: 50px;
   }
 `;
 const ForCheckBox = styled.div`
