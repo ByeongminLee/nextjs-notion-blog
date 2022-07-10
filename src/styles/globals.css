@@ -1,6 +1,6 @@
 @import './theme/index.css';
 @import './notion.css';
-
+@import './checkbox.css';
 html,
 body {
   padding: 0;
@@ -17,4 +17,14 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+span {
+  margin: 0;
+  padding: 0;
 }

@@ -41,6 +41,8 @@ export default function Home({ posts }) {
         if (!obj[`${seriesValue.name}`]) {
           obj[`${seriesValue.name}`] = new Array();
         }
+        data.properties['link'] = data.id.replace(/\-/g, '');
+        data.properties['cover'] = data.cover ? data.cover.external.url : null;
         obj[`${seriesValue.name}`].push(data.properties);
       }
     });
