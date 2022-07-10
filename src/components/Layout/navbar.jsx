@@ -44,6 +44,7 @@ const Wrapper = styled.div`
     h1 {
       font-size: var(--fontSize-xl);
       font-weight: 600;
+      line-height: 57px;
     }
   }
 `;
