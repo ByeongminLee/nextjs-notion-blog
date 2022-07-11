@@ -3,6 +3,7 @@ import { getBlocks, getDatabase, getPage } from '@/lib/notions/notionAPI';
 import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
 import styled from '@emotion/styled';
+import Tags from '@/components/Tags';
 
 const Post = ({ page, blocks }) => {
   if (!page || !blocks) {
@@ -12,6 +13,7 @@ const Post = ({ page, blocks }) => {
 
   const date = page.properties.Date.date !== null ? page.properties.Date.date.start : null;
   const series = page.properties.Series.select !== null ? page.properties.Series.select.name : null;
+  const tagsData = page.properties.Tags.multi_select;
 
   const dateHandler = date => {
     if (!date) return { year: '00', month: '00', day: '00' };
@@ -27,10 +29,13 @@ const Post = ({ page, blocks }) => {
     <>
       {page.cover ? <PostCover img={page.cover.external.url} /> : null}
 
-      <PostTitle>
+      <PostInfo>
         {series ? <Series>{series}</Series> : null}
-        {page.properties.Title.title[0].plain_text}
-      </PostTitle>
+        <h2>{page.properties.Title.title[0].plain_text}</h2>
+        <TagsContainer>
+          <Tags data={tagsData} />
+        </TagsContainer>
+      </PostInfo>
 
       <PostDate>
         <Image src="/icon/calender.png" alt="calender" width={14} height={14} />
@@ -97,19 +102,30 @@ const PostCover = styled.div`
   border-radius: 3px;
 `;
 
-const PostTitle = styled.h2`
-  font-size: var(--fontSize-3xl);
-  padding: 20px 0;
+const PostInfo = styled.div`
+  margin-top: 30px;
+
+  h2 {
+    font-size: var(--fontSize-3xl);
+  }
 `;
+
 const PostDate = styled.div`
   text-align: left;
   margin-bottom: 50px;
+
   span {
     font-size: var(--fontSize-sm);
     padding: 0 5px;
     vertical-align: top;
     color: var(--color-grey-text);
   }
+`;
+
+const TagsContainer = styled.div`
+  display: flex;
+  width: 85%;
+  margin: 0;
 `;
 
 const Series = styled.h4`
