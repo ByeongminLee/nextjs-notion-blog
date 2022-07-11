@@ -1,15 +1,44 @@
+import Image from 'next/image';
 import { getBlocks, getDatabase, getPage } from '@/lib/notions/notionAPI';
 import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
-import { Fragment } from 'react';
+import styled from '@emotion/styled';
 
 const Post = ({ page, blocks }) => {
   if (!page || !blocks) {
     return <div />;
   }
+  console.log(page);
+
+  const date = page.properties.Date.date !== null ? page.properties.Date.date.start : null;
+  const series = page.properties.Series.select !== null ? page.properties.Series.select.name : null;
+
+  const dateHandler = date => {
+    if (!date) return { year: '00', month: '00', day: '00' };
+    const year = date.substring(0, 4);
+    const month = parseInt(date.substring(5, 7));
+    const day = parseInt(date.substring(8, 10));
+    return { year, month, day };
+  };
+
+  const { year, month, day } = dateHandler(date);
 
   return (
     <>
+      {page.cover ? <PostCover img={page.cover.external.url} /> : null}
+
+      <PostTitle>
+        {series ? <Series>{series}</Series> : null}
+        {page.properties.Title.title[0].plain_text}
+      </PostTitle>
+
+      <PostDate>
+        <Image src="/icon/calender.png" alt="calender" width={14} height={14} />
+        <span>
+          {year}년 {month}월 {day}일
+        </span>
+      </PostDate>
+
       {blocks.map(block => {
         return RenderBlock(block);
       })}
@@ -58,3 +87,34 @@ export const getStaticProps = async context => {
     revalidate: 1,
   };
 };
+
+const PostCover = styled.div`
+  background-image: url(${({ img }) => img});
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 250px;
+  border-radius: 3px;
+`;
+
+const PostTitle = styled.h2`
+  font-size: var(--fontSize-3xl);
+  padding: 20px 0;
+`;
+const PostDate = styled.div`
+  text-align: left;
+  margin-bottom: 50px;
+  span {
+    font-size: var(--fontSize-sm);
+    padding: 0 5px;
+    vertical-align: top;
+    color: var(--color-grey-text);
+  }
+`;
+
+const Series = styled.h4`
+  color: var(--color-grey-text);
+  font-size: var(--fontSize-sm);
+  font-weight: 900;
+  margin: 0;
+`;

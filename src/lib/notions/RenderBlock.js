@@ -52,7 +52,7 @@ export const RenderBlock = block => {
       return (
         <figure key={id}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img alt={caption} src={imageSrc} />
+          <img className="imgs" alt={caption} src={imageSrc} />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>
       );
