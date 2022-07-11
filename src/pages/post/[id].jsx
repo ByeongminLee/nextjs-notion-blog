@@ -9,11 +9,11 @@ const Post = ({ page, blocks }) => {
   }
 
   return (
-    <div>
+    <>
       {blocks.map(block => {
         return RenderBlock(block);
       })}
-    </div>
+    </>
   );
 };
 

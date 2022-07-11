@@ -1,6 +1,7 @@
 @import './theme/index.css';
-@import './notion.css';
+@import 'notion.module.css';
 @import './checkbox.css';
+
 html,
 body {
   padding: 0;
