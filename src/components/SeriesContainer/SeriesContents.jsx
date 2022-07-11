@@ -31,4 +31,9 @@ const Container = styled.div`
     color: var(--color-primary-text)
     font-size: var(--fontSize-sm);
   }
+
+  :hover{
+    border: 1px solid var(  --color-yellow);
+    border-left: 4px solid var(  --color-yellow);
+  }
 `;
