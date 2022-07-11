@@ -45,7 +45,7 @@
 }
 
 .callout {
-  background-color: var(--color-line-hr);
+  background-color: var(--color-callout);
   border-radius: 3px;
   width: 100%;
   line-height: 20px;
@@ -54,6 +54,7 @@
 .callout-emoji {
   margin-right: 10px;
 }
+
 .imgs {
   width: 100%;
   height: 100%;
