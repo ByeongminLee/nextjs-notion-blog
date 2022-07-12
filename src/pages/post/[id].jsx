@@ -4,11 +4,19 @@ import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
 import styled from '@emotion/styled';
 import Tags from '@/components/Tags';
+import { useEffect } from 'react';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css';
 
 const Post = ({ page, blocks }) => {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
   if (!page || !blocks) {
     return <div />;
   }
+
   console.log(page);
 
   const date = page.properties.Date.date !== null ? page.properties.Date.date.start : null;

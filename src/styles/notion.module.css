@@ -2,7 +2,10 @@
   font-weight: bold;
 }
 .code {
-  font-size: 50px;
+  color: #ee0000;
+  background-color: var(--color-callout);
+  border-radius: 5px;
+  padding: 2px 6px;
 }
 .italic {
   font-style: italic;

@@ -67,8 +67,7 @@ export const RenderBlock = block => {
     case 'code':
       return (
         <pre key={id}>
-          <p>{value.language}</p>
-          <code>{value.rich_text[0].plain_text}</code>
+          <code className={`language-${value.language}`}>{value.rich_text[0].plain_text}</code>
         </pre>
       );
     case 'callout':
@@ -113,10 +112,10 @@ const Text = ({ text, id }) => {
       >
         {text.link ? (
           <a href={text.link.url} className="underline">
-            <code>{text.content}</code>
+            <code className="code">{text.content}</code>
           </a>
         ) : (
-          <code>{text.content}</code>
+          <code className="code">{text.content}</code>
         )}
       </span>
     ) : (
