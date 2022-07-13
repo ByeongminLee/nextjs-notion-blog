@@ -1,12 +1,13 @@
+import { useEffect } from 'react';
 import Image from 'next/image';
+import styled from '@emotion/styled';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css';
 import { getBlocks, getDatabase, getPage } from '@/lib/notions/notionAPI';
 import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
-import styled from '@emotion/styled';
 import Tags from '@/components/Tags';
-import { useEffect } from 'react';
-import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css';
+import IndexCard from '@/components/IndexCard';
 
 const Post = ({ page, blocks }) => {
   useEffect(() => {
@@ -17,7 +18,13 @@ const Post = ({ page, blocks }) => {
     return <div />;
   }
 
-  console.log(page);
+  const indexList = blocks
+    .filter(block => {
+      return block.type === 'heading_1' || block.type === 'heading_2' || block.type === 'heading_3';
+    })
+    .map(item => item);
+
+  console.log(indexList);
 
   const date = page.properties.Date.date !== null ? page.properties.Date.date.start : null;
   const series = page.properties.Series.select !== null ? page.properties.Series.select.name : null;
@@ -44,6 +51,8 @@ const Post = ({ page, blocks }) => {
           <Tags data={tagsData} />
         </TagsContainer>
       </PostInfo>
+
+      {indexList.length > 0 ? <IndexCard indexList={indexList} /> : null}
 
       <PostDate>
         <Image src="/icon/calender.png" alt="calender" width={14} height={14} />

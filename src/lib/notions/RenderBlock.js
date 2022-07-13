@@ -12,21 +12,21 @@ export const RenderBlock = block => {
 
     case 'heading_1':
       return (
-        <h1 className="heading1">
+        <h1 className="heading1" id={value.rich_text[0].plain_text}>
           <Text text={value.rich_text} id={id} key={id} />
         </h1>
       );
 
     case 'heading_2':
       return (
-        <h2 className="heading2">
+        <h2 className="heading2" id={value.rich_text[0].plain_text}>
           <Text text={value.rich_text} id={id} key={id} />
         </h2>
       );
 
     case 'heading_3':
       return (
-        <h3 className="heading3">
+        <h3 className="heading3" id={value.rich_text[0].plain_text}>
           <Text text={value.rich_text} id={id} key={id} />
         </h3>
       );

@@ -62,3 +62,22 @@
   width: 100%;
   height: 100%;
 }
+
+/* 제목 목차 */
+.index-list {
+  color: var(--color-grey-text);
+  font-size: var(--fontSize-sm);
+  cursor: pointer;
+}
+.index-list:hover {
+  text-decoration: underline;
+}
+
+.index-heading_1 {
+}
+.index-heading_2 {
+  text-indent: 10px;
+}
+.index-heading_3 {
+  text-indent: 20px;
+}
