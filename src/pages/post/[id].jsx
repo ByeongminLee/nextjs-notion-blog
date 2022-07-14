@@ -8,8 +8,11 @@ import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
 import Tags from '@/components/Tags';
 import IndexCard from '@/components/IndexCard';
+import useResponsive from '@/hooks/useResponsive';
 
 const Post = ({ page, blocks }) => {
+  const { size } = useResponsive();
+
   useEffect(() => {
     Prism.highlightAll();
   }, []);
@@ -41,7 +44,7 @@ const Post = ({ page, blocks }) => {
   const { year, month, day } = dateHandler(date);
 
   return (
-    <>
+    <Container>
       {page.cover ? <PostCover img={page.cover.external.url} /> : null}
 
       <PostInfo>
@@ -51,8 +54,6 @@ const Post = ({ page, blocks }) => {
           <Tags data={tagsData} />
         </TagsContainer>
       </PostInfo>
-
-      {indexList.length > 0 ? <IndexCard indexList={indexList} /> : null}
 
       <PostDate>
         <Image src="/icon/calender.png" alt="calender" width={14} height={14} />
@@ -64,7 +65,9 @@ const Post = ({ page, blocks }) => {
       {blocks.map(block => {
         return RenderBlock(block);
       })}
-    </>
+
+      {size && size > 1140 ? <SideCard>{indexList.length > 0 ? <IndexCard indexList={indexList} /> : null}</SideCard> : null}
+    </Container>
   );
 };
 
@@ -109,6 +112,17 @@ export const getStaticProps = async context => {
     revalidate: 1,
   };
 };
+const Container = styled.div`
+  position: relative;
+`;
+
+const SideCard = styled.div`
+  position: absolute;
+  top: 10px;
+  right: -120px;
+  max-width: 300px;
+  height: 100%;
+`;
 
 const PostCover = styled.div`
   background-image: url(${({ img }) => img});

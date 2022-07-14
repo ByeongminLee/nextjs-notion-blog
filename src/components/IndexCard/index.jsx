@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 const IndexCard = ({ indexList }) => {
-  console.log('test', indexList);
   return (
     <Container>
       {indexList.map((value, key) => (
@@ -16,7 +15,9 @@ const IndexCard = ({ indexList }) => {
 export default IndexCard;
 
 const Container = styled.div`
-  width: 100%;
-  border: 1px solid red;
+  position: sticky;
+  top: 170px;
+  max-width: 300px;
   padding: 10px;
+  margin-top: 250px;
 `;
