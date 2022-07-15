@@ -1,0 +1,83 @@
+.bold {
+  font-weight: bold;
+}
+.code {
+  color: #ee0000;
+  background-color: var(--color-callout);
+  border-radius: 5px;
+  padding: 2px 6px;
+}
+.italic {
+  font-style: italic;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+.underline {
+  text-decoration: underline;
+}
+
+.heading1,
+.heading2,
+.heading3,
+.text,
+.todo,
+.toggle,
+.blockquote,
+.callout,
+.hr {
+  margin: 20px 0;
+}
+.list1,
+.list2,
+.list3 {
+  margin: 10px 0;
+}
+
+.toggle > summary {
+  padding: 10px 0;
+}
+.toggle > p {
+  text-indent: 15px;
+}
+
+.blockquote {
+  border-left: 3px solid var(--color-line-hr);
+  padding-left: 10px;
+  color: var(--color-grey-text);
+}
+
+.callout {
+  background-color: var(--color-callout);
+  border-radius: 3px;
+  width: 100%;
+  line-height: 20px;
+  padding: 13px;
+}
+.callout-emoji {
+  margin-right: 10px;
+}
+
+.imgs {
+  width: 100%;
+  height: 100%;
+}
+
+/* 제목 목차 */
+.index-list {
+  color: var(--color-grey-text);
+  font-size: var(--fontSize-sm);
+  cursor: pointer;
+}
+.index-list:hover {
+  text-decoration: underline;
+}
+
+.index-heading_1 {
+}
+.index-heading_2 {
+  text-indent: 10px;
+}
+.index-heading_3 {
+  text-indent: 20px;
+}

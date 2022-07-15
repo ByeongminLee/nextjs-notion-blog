@@ -4,8 +4,10 @@
   --color-toggle-bg: #555;
   --color-button-bg: #ebe9e9;
   --color-line: #eee;
+  --color-line-hr: #c1c1c1;
   --color-line-card: #666;
   --color-shadow: rgb(0 0 0 / 8%) 0px 0px 15px;
+  --color-callout: #ebebeb;
 
   --color-primary-text: #000;
   --color-button-text: #4b4b4b;
