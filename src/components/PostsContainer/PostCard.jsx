@@ -1,10 +1,11 @@
+import dateHandler from '@/lib/Handler/dateHandler';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
 import Tags from '../Tags';
 
-const PostCard = ({ data }) => {
-  const { id, created_time, properties } = data;
+const PostCard = ({ post }) => {
+  const { id, created_time, properties } = post;
   const url = id.replace(/\-/g, '');
   const title = properties.Title.title[0].plain_text;
   const tagsData = properties.Tags.multi_select;
@@ -14,14 +15,6 @@ const PostCard = ({ data }) => {
 
   const series = properties.Series.select !== null ? properties.Series.select.name : null;
 
-  const dateHandler = date => {
-    if (!date) return { year: '00', month: '00', day: '00' };
-    const year = date.substring(0, 4);
-    const month = parseInt(date.substring(5, 7));
-    const day = parseInt(date.substring(8, 10));
-    return { year, month, day };
-  };
-
   const { year, month, day } = dateHandler(date);
 
   return (
@@ -29,8 +22,8 @@ const PostCard = ({ data }) => {
       <Series>{series}</Series>
       <Link href={`/post/${url}`}>
         <a>
-          <Title>title: {title}</Title>
-          {description ? <Description>description : {description}</Description> : <Description></Description>}
+          <Title>{title}</Title>
+          {description ? <Description>{description}</Description> : null}
         </a>
       </Link>
 

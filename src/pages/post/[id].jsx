@@ -3,13 +3,16 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
-import { getBlocks, getDatabase, getPage } from '@/lib/notions/notionAPI';
-import { DATABASE_ID } from '@/lib/notions/notionKey';
-import { RenderBlock } from '@/lib/notions/RenderBlock';
+
 import Tags from '@/components/Tags';
 import IndexCard from '@/components/IndexCard';
 import useResponsive from '@/hooks/useResponsive';
 import Meta from '@/components/Meta';
+
+import { getBlocks, getDatabase, getPage } from '@/lib/notions/notionAPI';
+import { DATABASE_ID } from '@/lib/notions/notionKey';
+import { RenderBlock } from '@/lib/notions/RenderBlock';
+import dateHandler from '@/lib/Handler/dateHandler';
 
 const Post = ({ page, blocks }) => {
   const { size } = useResponsive();
@@ -34,14 +37,6 @@ const Post = ({ page, blocks }) => {
   const date = page.properties.Date.date !== null ? page.properties.Date.date.start : null;
   const series = page.properties.Series.select !== null ? page.properties.Series.select.name : null;
   const tagsData = page.properties.Tags.multi_select;
-
-  const dateHandler = date => {
-    if (!date) return { year: '00', month: '00', day: '00' };
-    const year = date.substring(0, 4);
-    const month = parseInt(date.substring(5, 7));
-    const day = parseInt(date.substring(8, 10));
-    return { year, month, day };
-  };
 
   const { year, month, day } = dateHandler(date);
 
