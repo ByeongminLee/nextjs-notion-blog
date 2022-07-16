@@ -9,6 +9,8 @@ import PostsContainer from '@/components/PostsContainer';
 import TagsContainer from '@/components/TagsContainer';
 import SeriesContainer from '@/components/SeriesContainer';
 import Meta from '@/components/Meta';
+import seriesHandler from '@/lib/Handler/seriesHandler';
+import tagListHandler from '@/lib/Handler/tagListHandler';
 
 export default function Home({ posts }) {
   const [mounted, setMounted] = useState(false);
@@ -16,42 +18,17 @@ export default function Home({ posts }) {
   const [target, setTarget] = useState(0);
   const [tagsList, setTagsList] = useState([]);
   const tabTitle = ['POSTS', 'SERIES', 'TAGS'];
-
-  const getTagList = dataList => {
-    const dupArr = [];
-    dataList.map(data => {
-      if (data.properties.Tags.multi_select.length !== 0) {
-        data.properties.Tags.multi_select.map(value => {
-          dupArr.push(value.name);
-        });
-      }
-    });
-    const set = new Set(dupArr);
-    setTagsList([...set]);
-  };
-
-  useEffect(() => {
-    if (posts) getTagList(posts);
-  }, [posts]);
-
-  const seriesHandler = seriesPosts => {
-    const obj = new Object();
-    seriesPosts.map(data => {
-      const seriesValue = data.properties.Series.select;
-      if (seriesValue !== null) {
-        if (!obj[`${seriesValue.name}`]) {
-          obj[`${seriesValue.name}`] = new Array();
-        }
-        data.properties['link'] = data.id.replace(/\-/g, '');
-        data.properties['cover'] = data.cover ? data.cover.external.url : null;
-        obj[`${seriesValue.name}`].push(data.properties);
-      }
-    });
-    return obj;
-  };
-
   const seriesObj = seriesHandler(posts);
 
+  useEffect(() => {
+    let tagListData;
+    if (posts) {
+      tagListData = tagListHandler(posts);
+    }
+    setTagsList(tagListData);
+  }, [posts]);
+
+  // dark-mode re-render 깜빡임 방지
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
@@ -80,7 +57,3 @@ export const getStaticProps = async () => {
     revalidate: 1,
   };
 };
-
-const Button = styled.button`
-  color: var(--primary-color);
-`;
