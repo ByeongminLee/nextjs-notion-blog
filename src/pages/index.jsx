@@ -2,15 +2,12 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import styled from '@emotion/styled';
+
+import { PostsContainer, SeriesContainer, TagsContainer, Meta, Tabs } from '@/components';
+
 import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { getDatabase, getTags } from '@/lib/notions/notionAPI';
-import Tabs from '@/components/Tabs';
-import PostsContainer from '@/components/PostsContainer';
-import TagsContainer from '@/components/TagsContainer';
-import SeriesContainer from '@/components/SeriesContainer';
-import Meta from '@/components/Meta';
-import seriesHandler from '@/lib/Handler/seriesHandler';
-import tagListHandler from '@/lib/Handler/tagListHandler';
+import { seriesHandler, tagListHandler } from '@/lib/Handler';
 
 export default function Home({ posts }) {
   const [mounted, setMounted] = useState(false);

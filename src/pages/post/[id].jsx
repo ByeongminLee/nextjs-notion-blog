@@ -4,17 +4,13 @@ import styled from '@emotion/styled';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 
-import Tags from '@/components/Tags';
-import IndexCard from '@/components/IndexCard';
+import { Meta, Tags, IndexCard } from '@/components';
 import useResponsive from '@/hooks/useResponsive';
-import Meta from '@/components/Meta';
 
 import { getBlocks, getDatabase, getPage } from '@/lib/notions/notionAPI';
 import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
-import dateHandler from '@/lib/Handler/dateHandler';
-import { getPost, getTag } from '@/lib/Handler/postHandler';
-import getIndexListHandler from '@/lib/Handler/getIndexListHandler';
+import { dateHandler, getPost, getTag, getIndexListHandler } from '@/lib/Handler';
 
 const Post = ({ page, blocks }) => {
   const { size } = useResponsive();
