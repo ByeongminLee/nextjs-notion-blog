@@ -7,7 +7,7 @@ const PostCard = ({ data }) => {
   const { id, created_time, properties } = data;
   const url = id.replace(/\-/g, '');
   const title = properties.Title.title[0].plain_text;
-  let tagsData = properties.Tags.multi_select;
+  const tagsData = properties.Tags.multi_select;
   const description = properties.Description.rich_text.length !== 0 ? properties.Description.rich_text[0].plain_text : null;
 
   const date = properties.Date.date !== null ? properties.Date.date.start : null;

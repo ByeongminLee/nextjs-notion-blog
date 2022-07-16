@@ -1,0 +1,7 @@
+#ForCheck {
+  cursor: pointer;
+}
+
+#ForCheck > input[type='checkbox'] {
+  display: none;
+}
