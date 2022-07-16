@@ -14,11 +14,10 @@ import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
 import dateHandler from '@/lib/Handler/dateHandler';
 import { getPost } from '@/lib/Handler/postHandler';
+import getIndexListHandler from '@/lib/Handler/getIndexListHandler';
 
 const Post = ({ page, blocks }) => {
   const { size } = useResponsive();
-  const { url, title, description, tagsData, date, series } = getPost(page);
-  const { year, month, day } = dateHandler(date);
 
   useEffect(() => {
     Prism.highlightAll();
@@ -28,11 +27,9 @@ const Post = ({ page, blocks }) => {
     return <div />;
   }
 
-  const indexList = blocks
-    .filter(block => {
-      return block.type === 'heading_1' || block.type === 'heading_2' || block.type === 'heading_3';
-    })
-    .map(item => item);
+  const { url, title, description, tagsData, date, series } = getPost(page);
+  const { year, month, day } = dateHandler(date);
+  const indexList = getIndexListHandler(blocks);
 
   const metaData = {
     title: `nextjs-notion-blog | ${page.properties.Title.title[0].plain_text}`,
