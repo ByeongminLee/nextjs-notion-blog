@@ -8,6 +8,7 @@ import Tabs from '@/components/Tabs';
 import PostsContainer from '@/components/PostsContainer';
 import TagsContainer from '@/components/TagsContainer';
 import SeriesContainer from '@/components/SeriesContainer';
+import Meta from '@/components/Meta';
 
 export default function Home({ posts }) {
   const [mounted, setMounted] = useState(false);
@@ -56,6 +57,7 @@ export default function Home({ posts }) {
 
   return (
     <>
+      <Meta />
       <Tabs tabTitle={tabTitle} target={target} setTarget={setTarget} />
 
       {target === 0 ? (
