@@ -13,7 +13,7 @@ import { getBlocks, getDatabase, getPage } from '@/lib/notions/notionAPI';
 import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
 import dateHandler from '@/lib/Handler/dateHandler';
-import { getPost } from '@/lib/Handler/postHandler';
+import { getPost, getTag } from '@/lib/Handler/postHandler';
 import getIndexListHandler from '@/lib/Handler/getIndexListHandler';
 
 const Post = ({ page, blocks }) => {
@@ -30,9 +30,11 @@ const Post = ({ page, blocks }) => {
   const { url, title, description, tagsData, date, series } = getPost(page);
   const { year, month, day } = dateHandler(date);
   const indexList = getIndexListHandler(blocks);
+  const tag = getTag(tagsData);
 
   const metaData = {
     title: `nextjs-notion-blog | ${page.properties.Title.title[0].plain_text}`,
+    keyword: tag,
     description: description,
     url: `http://localhost:3000/posts/${url}`,
     image: page.cover ? page.cover.external.url : 'http://localhost:3000/',
@@ -40,7 +42,13 @@ const Post = ({ page, blocks }) => {
 
   return (
     <>
-      <Meta title={metaData.title} description={metaData.description} url={metaData.url} image={metaData.image} />
+      <Meta
+        title={metaData.title}
+        keyword={metaData.keyword}
+        description={metaData.description}
+        url={metaData.url}
+        image={metaData.image}
+      />
       <Container>
         {page.cover ? <PostCover img={page.cover.external.url} /> : null}
 

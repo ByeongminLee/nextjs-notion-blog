@@ -12,6 +12,12 @@ const getUrl = post => {
 const getTagsData = post => {
   return post.properties.Tags.multi_select;
 };
+const getTag = tags => {
+  const tagList = tags.map(tag => {
+    return tag.name;
+  });
+  return tagList;
+};
 const getDescription = post => {
   if (post.properties.Description.rich_text.length !== 0) return post.properties.Description.rich_text[0].plain_text;
   else return null;
@@ -36,4 +42,4 @@ const getPost = post => {
   return { url, title, description, tagsData, date, series };
 };
 
-export { getPost, getTitle, getUrl, getTagsData, getDescription, getDate, getSeries };
+export { getPost, getTitle, getUrl, getTagsData, getTag, getDescription, getDate, getSeries };
