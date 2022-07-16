@@ -1,20 +1,12 @@
 import dateHandler from '@/lib/Handler/dateHandler';
+import { getPost } from '@/lib/Handler/postHandler';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import Link from 'next/link';
 import Tags from '../Tags';
 
 const PostCard = ({ post }) => {
-  const { id, created_time, properties } = post;
-  const url = id.replace(/\-/g, '');
-  const title = properties.Title.title[0].plain_text;
-  const tagsData = properties.Tags.multi_select;
-  const description = properties.Description.rich_text.length !== 0 ? properties.Description.rich_text[0].plain_text : null;
-
-  const date = properties.Date.date !== null ? properties.Date.date.start : null;
-
-  const series = properties.Series.select !== null ? properties.Series.select.name : null;
-
+  const { url, title, description, tagsData, date, series } = getPost(post);
   const { year, month, day } = dateHandler(date);
 
   return (

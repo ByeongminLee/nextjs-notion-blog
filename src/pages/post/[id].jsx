@@ -13,9 +13,12 @@ import { getBlocks, getDatabase, getPage } from '@/lib/notions/notionAPI';
 import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
 import dateHandler from '@/lib/Handler/dateHandler';
+import { getPost } from '@/lib/Handler/postHandler';
 
 const Post = ({ page, blocks }) => {
   const { size } = useResponsive();
+  const { url, title, description, tagsData, date, series } = getPost(page);
+  const { year, month, day } = dateHandler(date);
 
   useEffect(() => {
     Prism.highlightAll();
@@ -30,15 +33,6 @@ const Post = ({ page, blocks }) => {
       return block.type === 'heading_1' || block.type === 'heading_2' || block.type === 'heading_3';
     })
     .map(item => item);
-
-  const url = page.id.replace(/\-/g, '');
-  const description = page.properties.Description.rich_text.length !== 0 ? page.properties.Description.rich_text[0].plain_text : null;
-
-  const date = page.properties.Date.date !== null ? page.properties.Date.date.start : null;
-  const series = page.properties.Series.select !== null ? page.properties.Series.select.name : null;
-  const tagsData = page.properties.Tags.multi_select;
-
-  const { year, month, day } = dateHandler(date);
 
   const metaData = {
     title: `nextjs-notion-blog | ${page.properties.Title.title[0].plain_text}`,
@@ -55,7 +49,7 @@ const Post = ({ page, blocks }) => {
 
         <PostInfo>
           {series ? <Series>{series}</Series> : null}
-          <h2>{page.properties.Title.title[0].plain_text}</h2>
+          <h2>{title}</h2>
           <TagsContainer>
             <Tags data={tagsData} />
           </TagsContainer>
