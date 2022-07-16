@@ -1,13 +1,10 @@
 import Head from 'next/head';
 
-const Meta = props => {
-  const { title, description, url, image, favicon } = props;
-
+const Meta = ({ title, description, url, image, favicon }) => {
   return (
     <Head>
       {/* 기본 */}
       <title>{title}</title>
-      <html lang="ko" />
       <meta name="description" content={description} />
       <meta name="keywords" content="Site Keywords1 ,Site Keywords2, Site Keywords3" />
       <meta name="language" content="Korean" />

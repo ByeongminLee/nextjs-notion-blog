@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import Prism from 'prismjs';
@@ -9,6 +9,7 @@ import { RenderBlock } from '@/lib/notions/RenderBlock';
 import Tags from '@/components/Tags';
 import IndexCard from '@/components/IndexCard';
 import useResponsive from '@/hooks/useResponsive';
+import Meta from '@/components/Meta';
 
 const Post = ({ page, blocks }) => {
   const { size } = useResponsive();
@@ -27,7 +28,8 @@ const Post = ({ page, blocks }) => {
     })
     .map(item => item);
 
-  console.log(indexList);
+  const url = page.id.replace(/\-/g, '');
+  const description = page.properties.Description.rich_text.length !== 0 ? page.properties.Description.rich_text[0].plain_text : null;
 
   const date = page.properties.Date.date !== null ? page.properties.Date.date.start : null;
   const series = page.properties.Series.select !== null ? page.properties.Series.select.name : null;
@@ -43,31 +45,41 @@ const Post = ({ page, blocks }) => {
 
   const { year, month, day } = dateHandler(date);
 
+  const metaData = {
+    title: `nextjs-notion-blog | ${page.properties.Title.title[0].plain_text}`,
+    description: description,
+    url: `http://localhost:3000/posts/${url}`,
+    image: page.cover ? page.cover.external.url : 'http://localhost:3000/',
+  };
+
   return (
-    <Container>
-      {page.cover ? <PostCover img={page.cover.external.url} /> : null}
+    <>
+      <Meta title={metaData.title} description={metaData.description} url={metaData.url} image={metaData.image} />
+      <Container>
+        {page.cover ? <PostCover img={page.cover.external.url} /> : null}
 
-      <PostInfo>
-        {series ? <Series>{series}</Series> : null}
-        <h2>{page.properties.Title.title[0].plain_text}</h2>
-        <TagsContainer>
-          <Tags data={tagsData} />
-        </TagsContainer>
-      </PostInfo>
+        <PostInfo>
+          {series ? <Series>{series}</Series> : null}
+          <h2>{page.properties.Title.title[0].plain_text}</h2>
+          <TagsContainer>
+            <Tags data={tagsData} />
+          </TagsContainer>
+        </PostInfo>
 
-      <PostDate>
-        <Image src="/icon/calender.png" alt="calender" width={14} height={14} />
-        <span>
-          {year}년 {month}월 {day}일
-        </span>
-      </PostDate>
+        <PostDate>
+          <Image src="/icon/calender.png" alt="calender" width={14} height={14} />
+          <span>
+            {year}년 {month}월 {day}일
+          </span>
+        </PostDate>
 
-      {blocks.map(block => {
-        return RenderBlock(block);
-      })}
+        {blocks.map((block, key) => {
+          return <React.Fragment key={key}>{RenderBlock(block, key)}</React.Fragment>;
+        })}
 
-      {size && size > 1140 ? <SideCard>{indexList.length > 0 ? <IndexCard indexList={indexList} /> : null}</SideCard> : null}
-    </Container>
+        {size && size > 1140 ? <SideCard>{indexList.length > 0 ? <IndexCard indexList={indexList} /> : null}</SideCard> : null}
+      </Container>
+    </>
   );
 };
 
