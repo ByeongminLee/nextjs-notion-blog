@@ -16,9 +16,9 @@ const PostsContainer = ({ dataList }) => {
       {postsData &&
         postsData
           ?.filter(item => postsData.indexOf(item) < limit)
-          .map((data, key) => (
+          .map((post, key) => (
             <Container key={key}>
-              <PostCard data={data} />
+              <PostCard post={post} />
             </Container>
           ))}
       {maxLimit <= limit ? null : (

@@ -1,6 +1,6 @@
-import Button from '@/components/Button';
-import styled from '@emotion/styled';
 import Link from 'next/link';
+import styled from '@emotion/styled';
+import { Button } from '@/components';
 
 const Error = ({ statusCode }) => {
   return (
