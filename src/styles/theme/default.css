@@ -21,6 +21,7 @@
   --color-link: #3a95ff;
 
   /* common - font size */
+  --font-Size-2xs: 0.25rem;
   --fontSize-xs: 0.5rem;
   --fontSize-sm: 0.75rem;
   --fontSize-base: 1rem;

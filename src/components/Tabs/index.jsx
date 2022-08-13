@@ -28,6 +28,13 @@ const Container = styled.div`
   gap: 0 1.2rem;
   padding: 10px 0;
   margin-bottom: 50px;
+
+  @media screen and (max-width: 720px) {
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 540px) {
+    margin-bottom: 0px;
+  }
 `;
 
 const Tab = styled.div`
@@ -40,6 +47,19 @@ const Tab = styled.div`
 
     :hover {
       color: var(--color-yellow);
+    }
+  }
+
+  @media screen and (max-width: 720px) {
+    h2 {
+      margin: 0.6rem 0.8rem;
+      font-size: calc(var(--fontSize-lg) - 0.1rem);
+    }
+  }
+  @media screen and (max-width: 540px) {
+    h2 {
+      margin: 0.4rem 0.6rem;
+      font-size: var(--fontSize-md);
     }
   }
 `;

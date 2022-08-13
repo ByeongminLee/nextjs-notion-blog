@@ -46,6 +46,9 @@ const Card = styled.div`
       text-decoration: underline;
     }
   }
+  @media screen and (max-width: 540px) {
+    padding: 23px 0;
+  }
 `;
 
 const Series = styled.h4`
@@ -60,6 +63,12 @@ const Title = styled.h3`
   color: var(--color-primary-text);
   font-weight: 700;
   margin: 0;
+  @media screen and (max-width: 720px) {
+    font-size: var(--fontSize-2xl);
+  }
+  @media screen and (max-width: 540px) {
+    font-size: var(--fontSize-xl);
+  }
 `;
 
 const Description = styled.p`
@@ -68,6 +77,12 @@ const Description = styled.p`
   font-weight: 300;
   padding: 10px 0;
   margin: 0;
+  @media screen and (max-width: 720px) {
+    font-size: var(--fontSize-base);
+  }
+  @media screen and (max-width: 540px) {
+    font-size: var(--fontSize-sm);
+  }
 `;
 
 const TagsContainer = styled.div`
@@ -91,5 +106,16 @@ const Date = styled.div`
 
   ::after {
     clear: both;
+  }
+
+  @media screen and (max-width: 720px) {
+    span {
+      font-size: calc(var(--fontSize-sm) - 0.05rem);
+    }
+  }
+  @media screen and (max-width: 540px) {
+    span {
+      font-size: calc(var(--fontSize-sm) - 0.1rem);
+    }
   }
 `;
