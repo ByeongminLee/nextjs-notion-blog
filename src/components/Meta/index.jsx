@@ -1,12 +1,12 @@
 import Head from 'next/head';
 
-const Meta = ({ title, description, url, image, favicon }) => {
+const Meta = ({ title, keyword, description, url, image, favicon }) => {
   return (
     <Head>
       {/* 기본 */}
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content="Site Keywords1 ,Site Keywords2, Site Keywords3" />
+      <meta name="keywords" content={keyword} />
       <meta name="language" content="Korean" />
       <meta name="author" content="byeongminLee" />
       <meta name="robots" content="index, follow" />
@@ -39,6 +39,7 @@ export default Meta;
 
 Meta.defaultProps = {
   title: 'nextjs-notion-blog',
+  keyword: 'nextjs, notion, blog, tech',
   description: 'nextjs blog using notion API',
   url: 'http://localhost:3000/',
   image: 'http://localhost:3000/image.png',
