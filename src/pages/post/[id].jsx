@@ -121,7 +121,7 @@ const Container = styled.div`
 const SideCard = styled.div`
   position: absolute;
   top: 10px;
-  right: -120px;
+  right: -150px;
   max-width: 300px;
   height: 100%;
 `;

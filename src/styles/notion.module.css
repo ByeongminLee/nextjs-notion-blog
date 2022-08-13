@@ -6,6 +6,7 @@
   background-color: var(--color-callout);
   border-radius: 5px;
   padding: 2px 6px;
+  word-break: break-all;
 }
 .italic {
   font-style: italic;
@@ -28,6 +29,11 @@
 .hr {
   margin: 20px 0;
 }
+
+.text {
+  line-height: 1.4rem;
+}
+
 .list1,
 .list2,
 .list3 {

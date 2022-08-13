@@ -17,7 +17,8 @@ export default IndexCard;
 const Container = styled.div`
   position: sticky;
   top: 170px;
-  max-width: 300px;
+  width: 400px;
   padding: 10px;
+  padding-left: 160px;
   margin-top: 250px;
 `;
