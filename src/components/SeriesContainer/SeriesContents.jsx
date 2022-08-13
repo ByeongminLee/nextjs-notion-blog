@@ -28,12 +28,31 @@ const Container = styled.div`
 
   p {
     margin-top: 8px;
-    color: var(--color-primary-text)
+    color: var(--color-primary-text);
     font-size: var(--fontSize-sm);
   }
 
-  :hover{
-    border: 1px solid var(  --color-yellow);
-    border-left: 4px solid var(  --color-yellow);
+  :hover {
+    border: 1px solid var(--color-yellow);
+    border-left: 4px solid var(--color-yellow);
+  }
+
+  @media screen and (max-width: 720px) {
+    h4 {
+      font-size: font-size: var(--fontSize-base);
+    }
+    p {
+      margin-top: 5px;
+      font-size: calc(var(--fontSize-sm) - 0.05rem);
+    }
+  }
+  @media screen and (max-width: 540px) {
+    h4 {
+      font-size: var(--fontSize-base);
+    }
+    p {
+      margin-top: 3px;
+      font-size: calc(var(--fontSize-sm) - 0.1rem);
+    }
   }
 `;
