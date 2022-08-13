@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no-install commitlint --edit "$1" ||
+(
+  echo '
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+   👋  Please check the commit convention. 👋 
+  =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  '
+  false; 
+)
