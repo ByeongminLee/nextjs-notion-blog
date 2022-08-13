@@ -74,11 +74,12 @@ const SeriesCard = styled.div`
 const SeriesInfo = styled.div`
   width: 100%;
   display: inline-flex;
-  padding: 10px 0;
+  padding: 8px 0;
   h3 {
     width: 80%;
     font-size: var(--fontSize-2xl);
     margin: 0;
+    line-height: 40px;
   }
   p {
     width: calc(20% - 40px);
@@ -89,6 +90,27 @@ const SeriesInfo = styled.div`
     margin-right: 20px;
     line-height: 40px;
     min-width: 50px;
+  }
+
+  @media screen and (max-width: 720px) {
+    padding: 3px 0;
+    h3 {
+      font-size: var(--fontSize-xl);
+    }
+  }
+  @media screen and (max-width: 650px) {
+    h3 {
+      font-size: var(--fontSize-lg);
+    }
+  }
+  @media screen and (max-width: 540px) {
+    padding: 0;
+    h3 {
+      font-size: var(--fontSize-md);
+    }
+    p {
+      font-size: var(--fontSize-xs);
+    }
   }
 `;
 const ForCheckBox = styled.div`
@@ -108,4 +130,13 @@ const SeriesCover = styled.div`
   max-width: 878px;
   height: 200px;
   border-radius: 3px;
+  @media screen and (max-width: 720px) {
+    height: 170px;
+  }
+  @media screen and (max-width: 650px) {
+    height: 150px;
+  }
+  @media screen and (max-width: 540px) {
+    height: 120px;
+  }
 `;

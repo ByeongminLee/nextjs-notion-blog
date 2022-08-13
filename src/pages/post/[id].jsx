@@ -133,6 +133,12 @@ const PostCover = styled.div`
   width: 100%;
   height: 250px;
   border-radius: 3px;
+  @media screen and (max-width: 720px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 540px) {
+    height: 150px;
+  }
 `;
 
 const PostInfo = styled.div`
@@ -140,6 +146,16 @@ const PostInfo = styled.div`
 
   h2 {
     font-size: var(--fontSize-3xl);
+  }
+  @media screen and (max-width: 720px) {
+    h2 {
+      font-size: var(--fontSize-2xl);
+    }
+  }
+  @media screen and (max-width: 540px) {
+    h2 {
+      font-size: var(--fontSize-xl);
+    }
   }
 `;
 

@@ -27,4 +27,14 @@ const Container = styled.div`
     font-weight: 200;
     font-size: var(--fontSize-base);
   }
+  @media screen and (max-width: 720px) {
+    span {
+      font-size: calc(var(--fontSize-base) - 0.1rem);
+    }
+  }
+  @media screen and (max-width: 540px) {
+    span {
+      font-size: var(--fontSize-sm);
+    }
+  }
 `;
