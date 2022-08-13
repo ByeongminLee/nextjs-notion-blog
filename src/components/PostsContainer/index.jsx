@@ -16,9 +16,9 @@ const PostsContainer = ({ dataList }) => {
       {postsData &&
         postsData
           ?.filter(item => postsData.indexOf(item) < limit)
-          .map((data, key) => (
+          .map((post, key) => (
             <Container key={key}>
-              <PostCard data={data} />
+              <PostCard post={post} />
             </Container>
           ))}
       {maxLimit <= limit ? null : (
@@ -34,10 +34,15 @@ export default PostsContainer;
 
 const Container = styled.div`
   padding: 0 10px 70px 10px;
+  @media screen and (max-width: 720px) {
+    padding: 0 10px 50px 10px;
+  }
+  @media screen and (max-width: 540px) {
+    padding: 0 10px 30px 10px;
+  }
 `;
 
 const MoreContainer = styled.div`
   width: 100px;
-
   margin: 0 auto;
 `;

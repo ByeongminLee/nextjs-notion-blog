@@ -102,28 +102,31 @@ const Text = ({ text, id }) => {
       <span
         key={id + i}
         className={[
-          code,
-          bold ? 'bold' : '',
-          italic ? 'italic' : '',
-          strikethrough ? 'strikethrough' : '',
-          underline ? 'underline' : '',
+          'code',
+          bold ? 'bold' : null,
+          italic ? 'italic' : null,
+          strikethrough ? 'strikethrough' : null,
+          underline ? 'underline' : null,
         ].join(' ')}
         style={color !== 'default' ? { color } : {}}
       >
         {text.link ? (
           <a href={text.link.url} className="underline">
-            <code className="code">{text.content}</code>
+            <code>{text.content}</code>
           </a>
         ) : (
-          <code className="code">{text.content}</code>
+          <code>{text.content}</code>
         )}
       </span>
     ) : (
       <span
         key={id + i}
-        className={[bold ? 'bold' : '', italic ? 'italic' : '', strikethrough ? 'strikethrough' : '', underline ? 'underline' : ''].join(
-          ' ',
-        )}
+        className={[
+          bold ? 'bold' : null,
+          italic ? 'italic' : null,
+          strikethrough ? 'strikethrough' : null,
+          underline ? 'underline' : null,
+        ].join(' ')}
         style={color !== 'default' ? { color } : {}}
       >
         {text.link ? (

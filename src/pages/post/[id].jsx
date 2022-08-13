@@ -3,13 +3,14 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
+
+import { Meta, Tags, IndexCard } from '@/components';
+import useResponsive from '@/hooks/useResponsive';
+
 import { getBlocks, getDatabase, getPage } from '@/lib/notions/notionAPI';
 import { DATABASE_ID } from '@/lib/notions/notionKey';
 import { RenderBlock } from '@/lib/notions/RenderBlock';
-import Tags from '@/components/Tags';
-import IndexCard from '@/components/IndexCard';
-import useResponsive from '@/hooks/useResponsive';
-import Meta from '@/components/Meta';
+import { dateHandler, getPost, getTag, getIndexListHandler } from '@/lib/Handler';
 
 const Post = ({ page, blocks }) => {
   const { size } = useResponsive();
@@ -22,31 +23,14 @@ const Post = ({ page, blocks }) => {
     return <div />;
   }
 
-  const indexList = blocks
-    .filter(block => {
-      return block.type === 'heading_1' || block.type === 'heading_2' || block.type === 'heading_3';
-    })
-    .map(item => item);
-
-  const url = page.id.replace(/\-/g, '');
-  const description = page.properties.Description.rich_text.length !== 0 ? page.properties.Description.rich_text[0].plain_text : null;
-
-  const date = page.properties.Date.date !== null ? page.properties.Date.date.start : null;
-  const series = page.properties.Series.select !== null ? page.properties.Series.select.name : null;
-  const tagsData = page.properties.Tags.multi_select;
-
-  const dateHandler = date => {
-    if (!date) return { year: '00', month: '00', day: '00' };
-    const year = date.substring(0, 4);
-    const month = parseInt(date.substring(5, 7));
-    const day = parseInt(date.substring(8, 10));
-    return { year, month, day };
-  };
-
+  const { url, title, description, tagsData, date, series } = getPost(page);
   const { year, month, day } = dateHandler(date);
+  const indexList = getIndexListHandler(blocks);
+  const tag = getTag(tagsData);
 
   const metaData = {
     title: `nextjs-notion-blog | ${page.properties.Title.title[0].plain_text}`,
+    keyword: tag,
     description: description,
     url: `http://localhost:3000/posts/${url}`,
     image: page.cover ? page.cover.external.url : 'http://localhost:3000/',
@@ -54,13 +38,19 @@ const Post = ({ page, blocks }) => {
 
   return (
     <>
-      <Meta title={metaData.title} description={metaData.description} url={metaData.url} image={metaData.image} />
+      <Meta
+        title={metaData.title}
+        keyword={metaData.keyword}
+        description={metaData.description}
+        url={metaData.url}
+        image={metaData.image}
+      />
       <Container>
         {page.cover ? <PostCover img={page.cover.external.url} /> : null}
 
         <PostInfo>
           {series ? <Series>{series}</Series> : null}
-          <h2>{page.properties.Title.title[0].plain_text}</h2>
+          <h2>{title}</h2>
           <TagsContainer>
             <Tags data={tagsData} />
           </TagsContainer>
@@ -131,7 +121,7 @@ const Container = styled.div`
 const SideCard = styled.div`
   position: absolute;
   top: 10px;
-  right: -120px;
+  right: -150px;
   max-width: 300px;
   height: 100%;
 `;
@@ -143,6 +133,12 @@ const PostCover = styled.div`
   width: 100%;
   height: 250px;
   border-radius: 3px;
+  @media screen and (max-width: 720px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 540px) {
+    height: 150px;
+  }
 `;
 
 const PostInfo = styled.div`
@@ -150,6 +146,16 @@ const PostInfo = styled.div`
 
   h2 {
     font-size: var(--fontSize-3xl);
+  }
+  @media screen and (max-width: 720px) {
+    h2 {
+      font-size: var(--fontSize-2xl);
+    }
+  }
+  @media screen and (max-width: 540px) {
+    h2 {
+      font-size: var(--fontSize-xl);
+    }
   }
 `;
 
